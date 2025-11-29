@@ -117,7 +117,7 @@ graph TB
 
 **Linux/Mac:**
 ```bash
-cd ~/projetos
+cd ~/fiap-devsecops
 git clone https://github.com/josenetoo/fiap-dclt-devsecops-aula06.git
 cd fiap-dclt-devsecops-aula06
 ls -la
@@ -160,7 +160,7 @@ cat defectdojo/docker-compose.yml
 
 **Linux/Mac:**
 ```bash
-cd ~/projetos/fiap-dclt-devsecops-aula06/defectdojo
+cd ~/fiap-devsecops/fiap-dclt-devsecops-aula06/defectdojo
 
 # Subir todos os containers
 docker-compose up -d
@@ -171,7 +171,7 @@ docker-compose logs -f initializer
 
 **Windows (PowerShell):**
 ```powershell
-cd ~\projetos\fiap-dclt-devsecops-aula06\defectdojo
+cd ~\fiap-devsecops\fiap-dclt-devsecops-aula06\defectdojo
 
 # Subir todos os containers
 docker-compose up -d
