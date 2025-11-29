@@ -1,0 +1,52 @@
+{
+  "findings": [
+    {
+      "title": "Cross Site Scripting (Reflected) - XSS",
+      "description": "Cross-site Scripting (XSS) vulnerability found. Attacker-supplied code can be echoed into a user's browser.\n\nURL: http://vulnerable-app:3000/search?q=<script>alert(1)</script>\nParameter: q\nAttack: <script>alert(1)</script>\n\nCWE-79",
+      "severity": "High",
+      "date": "2024-01-20",
+      "mitigation": "Use a vetted library or framework that does not allow this weakness. Encode all user input before rendering.",
+      "references": "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html"
+    },
+    {
+      "title": "SQL Injection vulnerability",
+      "description": "SQL injection may be possible. The 'id' parameter appears to be vulnerable to SQL injection attacks.\n\nURL: http://vulnerable-app:3000/api/users?id=1' OR '1'='1\nParameter: id\nEvidence: SQL syntax error\n\nCWE-89",
+      "severity": "High",
+      "date": "2024-01-20",
+      "mitigation": "Do not trust client side input. Use parameterized queries or prepared statements.",
+      "references": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html"
+    },
+    {
+      "title": "Missing Anti-clickjacking Header",
+      "description": "The response does not include Content-Security-Policy with 'frame-ancestors' directive or X-Frame-Options header to protect against ClickJacking attacks.\n\nAffected URLs:\n- http://vulnerable-app:3000/\n- http://vulnerable-app:3000/login\n\nCWE-1021",
+      "severity": "Medium",
+      "date": "2024-01-20",
+      "mitigation": "Set X-Frame-Options header to 'DENY' or 'SAMEORIGIN', or use Content-Security-Policy with frame-ancestors directive.",
+      "references": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options"
+    },
+    {
+      "title": "Web Browser XSS Protection Not Enabled",
+      "description": "Web Browser XSS Protection is not enabled. The X-XSS-Protection HTTP response header is not set on the web server.\n\nURL: http://vulnerable-app:3000/\n\nCWE-693",
+      "severity": "Low",
+      "date": "2024-01-20",
+      "mitigation": "Set the X-XSS-Protection HTTP response header to '1; mode=block'.",
+      "references": "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html"
+    },
+    {
+      "title": "Strict-Transport-Security Header Not Set",
+      "description": "HTTP Strict Transport Security (HSTS) header is not set. This allows attackers to perform man-in-the-middle attacks.\n\nURL: http://vulnerable-app:3000/\n\nCWE-319",
+      "severity": "Low",
+      "date": "2024-01-20",
+      "mitigation": "Configure your web server to send the Strict-Transport-Security header with an appropriate max-age value.",
+      "references": "https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html"
+    },
+    {
+      "title": "X-Content-Type-Options Header Missing",
+      "description": "The Anti-MIME-Sniffing header X-Content-Type-Options was not set to 'nosniff'. This could allow MIME type sniffing attacks.\n\nURL: http://vulnerable-app:3000/\n\nCWE-693",
+      "severity": "Low",
+      "date": "2024-01-20",
+      "mitigation": "Set the X-Content-Type-Options header to 'nosniff' for all web pages.",
+      "references": "https://owasp.org/www-community/Security_Headers"
+    }
+  ]
+}

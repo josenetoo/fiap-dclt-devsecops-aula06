@@ -1,0 +1,59 @@
+{
+  "findings": [
+    {
+      "title": "Hard-coded API Key detected",
+      "description": "Hard-coded API Key detected in source code. Secrets should never be stored in source code. Use environment variables or a secrets manager instead.\n\nCode: const API_KEY = 'sk-1234567890abcdef1234567890abcdef'",
+      "severity": "Critical",
+      "file_path": "src/config.js",
+      "line": 15,
+      "date": "2024-01-15",
+      "vuln_id_from_tool": "HS-LEAKS-1",
+      "mitigation": "Remove hardcoded secrets and use environment variables or a secrets management solution.",
+      "references": "https://owasp.org/www-community/vulnerabilities/Use_of_hard-coded_password"
+    },
+    {
+      "title": "Hard-coded password detected",
+      "description": "Hard-coded password detected in database configuration. Use environment variables instead.\n\nCode: const DB_PASSWORD = 'admin123'",
+      "severity": "High",
+      "file_path": "src/database.js",
+      "line": 22,
+      "date": "2024-01-15",
+      "vuln_id_from_tool": "HS-LEAKS-2",
+      "mitigation": "Store database credentials in environment variables or use a secrets manager.",
+      "references": "https://cwe.mitre.org/data/definitions/798.html"
+    },
+    {
+      "title": "Dangerous eval() function usage",
+      "description": "Dangerous function 'eval' detected. This can lead to code injection attacks if user input is passed to eval.\n\nCode: eval(userInput)",
+      "severity": "High",
+      "file_path": "src/api.js",
+      "line": 45,
+      "date": "2024-01-16",
+      "vuln_id_from_tool": "HS-JAVASCRIPT-1",
+      "mitigation": "Avoid using eval(). Use safer alternatives like JSON.parse() for parsing data.",
+      "references": "https://owasp.org/www-community/attacks/Code_Injection"
+    },
+    {
+      "title": "SQL Injection vulnerability",
+      "description": "SQL Injection vulnerability detected. Use parameterized queries instead of string concatenation.\n\nCode: const query = `SELECT * FROM users WHERE id = ${userId}`",
+      "severity": "Critical",
+      "file_path": "src/user.js",
+      "line": 78,
+      "date": "2024-01-17",
+      "vuln_id_from_tool": "HS-JAVASCRIPT-2",
+      "mitigation": "Use parameterized queries or prepared statements to prevent SQL injection.",
+      "references": "https://owasp.org/www-community/attacks/SQL_Injection"
+    },
+    {
+      "title": "Sensitive data logged",
+      "description": "Sensitive data (password) is being logged. Avoid logging passwords, tokens, or other sensitive information.\n\nCode: console.log('User password:', password)",
+      "severity": "Medium",
+      "file_path": "src/logger.js",
+      "line": 102,
+      "date": "2024-01-18",
+      "vuln_id_from_tool": "HS-JAVASCRIPT-3",
+      "mitigation": "Remove sensitive data from log statements. Use log masking or filtering.",
+      "references": "https://cwe.mitre.org/data/definitions/532.html"
+    }
+  ]
+}
